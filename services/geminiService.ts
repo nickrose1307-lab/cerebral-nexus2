@@ -1,6 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { PuzzleData, PuzzleType, ValidationResult } from "../types";
 
+// Fix for TypeScript build error regarding process.env
+declare const process: any;
+
 // Initialize the client
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
