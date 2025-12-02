@@ -1,11 +1,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { PuzzleData, PuzzleType, ValidationResult } from "../types";
 
-// Fix for TypeScript build error regarding process.env
-declare const process: any;
-
-// Initialize the client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Initialize the client using Vite's environment variable standard
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
 
 const modelName = "gemini-2.5-flash";
 
