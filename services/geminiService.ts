@@ -1,8 +1,13 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { PuzzleData, PuzzleType, ValidationResult } from "../types";
 
-// Initialize the client using Vite's environment variable standard
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+// Declare process to avoid TS errors
+declare const process: any;
+
+// Initialize the client using the injected key from Vite define.
+// If the key is missing or dummy, it won't crash here, but will fail gracefully during generation.
+const apiKey = process.env.VITE_API_KEY || "OFFLINE_MODE";
+const ai = new GoogleGenAI({ apiKey });
 
 const modelName = "gemini-2.5-flash";
 
